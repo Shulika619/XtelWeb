@@ -1,0 +1,30 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/xtel_work_tg
+    username: postgres
+    password: 1234
+    initialize: true
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+
+
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
+        jdbc: debug
+    root: info
+  file:
+    path: './var/log'
+    name: ${logging.file.path}/xtel-web.log
+  logback:
+    rollingpolicy:
+      total-size-cap: 200MB
