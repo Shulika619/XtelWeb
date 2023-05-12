@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Список сообщений :: X-Tel</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <h1>Список сообщений</h1>
+</div>
+<div>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+<!--            <th><a class="sorted" sd:pagination-sort="id" >Id</a></th>-->
+            <th scope="col">ID</th>
+            <th scope="col">Кому</th>
+            <th scope="col">Отправил</th>
+            <th scope="col">Текст</th>
+            <th scope="col">Исполнитель</th>
+            <th scope="col">Дата создания</th>
+            <th scope="col">Дата обновления</th>
+            <th scope="col">Файл</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post: ${posts}">
+            <td th:text="${post.getId()}"/>
+            <td th:text="${post.getToDepartment().getName()}"/>
+            <td th:text="${post.getFromEmployee().getFullName()}"/>
+            <td th:text="${post.getTextMsg()}"/>
+            <td th:text="${post?.getTaskExecutor()?.getFullName()} ?: '-'"/>
+            <td th:text="${#dates.format(post.getCreatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
+            <td th:text="${#dates.format(post.getUpdatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
+            <td th:text="${post.getFileId()!=null} ? '+' : '-'"/>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+<!--    <div class="row">-->
+<!--        <div class="col-sm-6">-->
+<!--            <div sd:pagination-summary="">info</div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-6">-->
+<!--            <nav class="pull-right">-->
+<!--                <ul class="pagination" sd:pagination-split="7" sd:pagination="full">-->
+<!--                    &lt;!&ndash; Pagination created by SpringDataDialect, this content is just for mockup &ndash;&gt;-->
+<!--                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>-->
+<!--                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>-->
+<!--                </ul>-->
+<!--            </nav>-->
+<!--        </div>-->
+<!--    </div>-->
+
+</div>
+</body>
+</html>
