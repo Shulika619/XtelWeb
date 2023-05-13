@@ -21,10 +21,11 @@ public class PostController {
     @GetMapping("/posts")
     public String mainPostPage(
             Model model,
-            @PageableDefault(size = 20) @SortDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable
+            @PageableDefault(size = 15) @SortDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
         log.info("+++++ IN PostController :: mainPostPage :: START +++++");
         var posts = postService.findAll(pageable);
+        model.addAttribute("title", "Список сообщений :: X-Tel");
         model.addAttribute("posts", posts);
         log.info("+++++ IN PostController :: mainPostPage :: COMPLETE +++++");
         return "index";

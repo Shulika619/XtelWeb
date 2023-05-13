@@ -8,8 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
     @Query(
-            value = "select p from Post p join fetch p.fromEmployee join fetch p.toDepartment join fetch p.taskExecutor",
+            value = "select p from Post p join fetch p.fromEmployee join fetch p.toDepartment",
             countQuery = "SELECT count(p) from Post p")
     Page<Post> findAllWithoutNPlusOne(Pageable pageable);
-
 }
