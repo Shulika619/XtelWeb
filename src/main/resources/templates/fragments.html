@@ -12,7 +12,8 @@
 
 <div th:fragment="navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10"
+                aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -30,18 +31,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/posts">Сотрудники</a>
                 </li>
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Отделы</a>-->
-<!--                    <div class="dropdown-menu" aria-labelledby="dropdown10">-->
-<!--                        <th:block th:each="department: ${departments}">-->
-<!--                            <a th:text="${department.getName()}" class="dropdown-item" href="#">Action</a>-->
-<!--                        </th:block>-->
-<!--                    </div>-->
-<!--                </li>-->
+                <!--                <li class="nav-item dropdown">-->
+                <!--                    <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Отделы</a>-->
+                <!--                    <div class="dropdown-menu" aria-labelledby="dropdown10">-->
+                <!--                        <th:block th:each="department: ${departments}">-->
+                <!--                            <a th:text="${department.getName()}" class="dropdown-item" href="#">Action</a>-->
+                <!--                        </th:block>-->
+                <!--                    </div>-->
+                <!--                </li>-->
             </ul>
-            <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="поиск" aria-label="Search">
-            </form>
+            <!--            <form class="form-inline my-2 my-md-0">-->
+            <!--                <input class="form-control" type="text" placeholder="поиск" aria-label="Search">-->
+            <!--            </form>-->
         </div>
     </nav>
 </div>
@@ -51,23 +52,30 @@
 </div>
 
 <div th:fragment="dapartmentPosts" class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
         Выбрать отдел
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a th:text="Все" class="dropdown-item" href="/posts">Все</a>
         <div class="dropdown-divider"></div>
         <th:block th:each="department: ${departments}">
-            <a th:text="${department.getName()}" class="dropdown-item" th:href="@{/posts/{id}(id=${department.getId()})}"></a>
+            <a th:text="${department.getName()}" class="dropdown-item"
+               th:href="@{/posts/{id}(id=${department.getId()})}"></a>
         </th:block>
     </div>
 </div>
+
+<form th:fragment="search" class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="поиск по тексту" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+</form>
 
 <div th:fragment="table">
     <table class="table table-bordered">
         <thead class="thead-light">
         <tr>
-            <th><a class="sorted" sd:pagination-sort="id" >ID</a></th>
+            <th><a class="sorted" sd:pagination-sort="id">ID</a></th>
             <th scope="col">Кому</th>
             <th scope="col">Отправил</th>
             <th scope="col">Текст</th>

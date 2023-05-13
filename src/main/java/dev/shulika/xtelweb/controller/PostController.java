@@ -25,14 +25,14 @@ public class PostController {
             Model model,
             @PageableDefault(size = 15) @SortDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        log.info("+++++ IN PostController :: mainPostPage :: START +++++");
+        log.info("+++++ IN PostController :: findAllPosts :: START +++++");
         var posts = postService.findAll(pageable);
         var departments = departmentService.findAll();
         model.addAttribute("title", "Список сообщений :: X-Tel");
         model.addAttribute("h1", "Список всех сообщений");
         model.addAttribute("posts", posts);
         model.addAttribute("departments", departments);
-        log.info("+++++ IN PostController :: mainPostPage :: COMPLETE +++++");
+        log.info("+++++ IN PostController :: findAllPosts :: COMPLETE +++++");
         return "posts";
     }
 
