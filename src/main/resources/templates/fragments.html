@@ -19,25 +19,48 @@
         <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/posts">Главная <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Отделы</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown10">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+                    <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="/posts">Сообщения</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/posts">Отделы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/posts">Сотрудники</a>
+                </li>
+<!--                <li class="nav-item dropdown">-->
+<!--                    <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Отделы</a>-->
+<!--                    <div class="dropdown-menu" aria-labelledby="dropdown10">-->
+<!--                        <th:block th:each="department: ${departments}">-->
+<!--                            <a th:text="${department.getName()}" class="dropdown-item" href="#">Action</a>-->
+<!--                        </th:block>-->
+<!--                    </div>-->
+<!--                </li>-->
             </ul>
             <form class="form-inline my-2 my-md-0">
                 <input class="form-control" type="text" placeholder="поиск" aria-label="Search">
             </form>
         </div>
     </nav>
+</div>
+
+<div th:fragment="h1" class="container-fluid text-center">
+    <h1 th:text="${h1}"/>
+</div>
+
+<div th:fragment="dapartmentPosts" class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Выбрать отдел
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a th:text="Все" class="dropdown-item" href="/posts">Все</a>
+        <div class="dropdown-divider"></div>
+        <th:block th:each="department: ${departments}">
+            <a th:text="${department.getName()}" class="dropdown-item" th:href="@{/posts/{id}(id=${department.getId()})}"></a>
+        </th:block>
+    </div>
 </div>
 
 <div th:fragment="table">

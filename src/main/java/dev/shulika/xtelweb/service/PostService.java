@@ -22,4 +22,11 @@ public class PostService {
         log.info("+++++ IN PostService :: findAll :: FINISHED SUCCESSFULLY +++++");
         return posts;
     }
+
+    public Page<Post> findByDepartment(Pageable pageable, Long departmentId){
+        log.info("+++++ IN PostService :: findByDepartment :: START +++++");
+        var posts = postRepository.findByDepartmentWithoutNPlusOne(pageable, departmentId);
+        log.info("+++++ IN PostService :: findByDepartment :: FINISHED SUCCESSFULLY +++++");
+        return posts;
+    }
 }

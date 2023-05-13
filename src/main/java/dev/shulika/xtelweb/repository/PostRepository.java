@@ -11,4 +11,10 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             value = "select p from Post p join fetch p.fromEmployee join fetch p.toDepartment",
             countQuery = "SELECT count(p) from Post p")
     Page<Post> findAllWithoutNPlusOne(Pageable pageable);
+
+    @Query(
+            value = "select p from Post p join fetch p.fromEmployee join fetch p.toDepartment where p.toDepartment.id = :departmentId",
+            countQuery = "SELECT count(p) from Post p")
+    Page<Post> findByDepartmentWithoutNPlusOne(Pageable pageable, Long departmentId);
+
 }
