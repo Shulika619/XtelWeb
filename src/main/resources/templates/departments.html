@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml">
 <head th:replace="~{fragments :: head}"></head>
 <body>
 
 <div th:replace="fragments :: navbar"></div>
 <div th:replace="fragments :: h1"></div>
-<div th:replace="fragments :: table-departments"></div>
+
+<div>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th><a class="sorted" sd:pagination-sort="id">ID</a></th>
+            <th><a class="sorted" sd:pagination-sort="name">Название</a></th>
+            <th>Пароль</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="department: ${departments}">
+            <td th:text="${department.getId()}"/>
+            <td th:text="${department.getName()}"/>
+            <td th:text="${department.getPassword()}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
 <div th:replace="fragments :: pagination"></div>
 
 </body>

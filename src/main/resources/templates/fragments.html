@@ -31,125 +31,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/employees">Сотрудники</a>
                 </li>
-                <!--                <li class="nav-item dropdown">-->
-                <!--                    <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Отделы</a>-->
-                <!--                    <div class="dropdown-menu" aria-labelledby="dropdown10">-->
-                <!--                        <th:block th:each="department: ${departments}">-->
-                <!--                            <a th:text="${department.getName()}" class="dropdown-item" href="#">Action</a>-->
-                <!--                        </th:block>-->
-                <!--                    </div>-->
-                <!--                </li>-->
             </ul>
-            <!--            <form class="form-inline my-2 my-md-0">-->
-            <!--                <input class="form-control" type="text" placeholder="поиск" aria-label="Search">-->
-            <!--            </form>-->
         </div>
     </nav>
 </div>
 
 <div th:fragment="h1" class="container-fluid text-center">
     <h1 th:text="${h1}"/>
-</div>
-
-<div th:fragment="filterAndSearch" class="dropdown">
-    <ul class="navbar nav ml-auto">
-        <li>
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                Выбрать отдел
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a th:text="Все" class="dropdown-item" href="/posts">Все</a>
-                <div class="dropdown-divider"></div>
-                <th:block th:each="department: ${departments}">
-                    <a th:text="${department.getName()}" class="dropdown-item"
-                       th:href="@{/posts/{id}(id=${department.getId()})}"></a>
-                </th:block>
-            </div>
-        </li>
-        <li>
-            <form class="form-inline" th:action="@{/posts/search}" method="post">
-                <input class="form-control mr-sm-2" name="keyword" th:value="${keyword}" type="search"
-                       placeholder="поиск по тексту" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Поиск</button>
-            </form>
-        </li>
-    </ul>
-</div>
-
-<div th:fragment="table-posts">
-    <table class="table table-bordered">
-        <thead class="thead-light">
-        <tr>
-            <th><a class="sorted" sd:pagination-sort="id">ID</a></th>
-            <th><a class="sorted" sd:pagination-sort="toDepartment">Кому</a></th>
-            <th><a class="sorted" sd:pagination-sort="fromEmployee">Отправил</a></th>
-            <th><a class="sorted" sd:pagination-sort="textMsg">Текст</a></th>
-            <th><a class="sorted" sd:pagination-sort="taskExecutor">Исполнитель</a></th>
-            <th><a class="sorted" sd:pagination-sort="createdAt">Дата создания</a></th>
-            <th><a class="sorted" sd:pagination-sort="updatedAt">Дата обновления</a></th>
-            <th><a class="sorted" sd:pagination-sort="fileId">Файл</a></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="post: ${posts}">
-            <td th:text="${post.getId()}"/>
-            <td th:text="${post.getToDepartment().getName()}"/>
-            <td th:text="${post.getFromEmployee().getFullName()}"/>
-            <td th:text="${post.getTextMsg()}"/>
-            <td th:text="${post?.getTaskExecutor()?.getFullName()} ?: '-'"/>
-            <td th:text="${#dates.format(post.getCreatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
-            <td th:text="${#dates.format(post.getUpdatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
-            <td th:text="${post.getFileId()!=null} ? '+' : '-'"/>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div th:fragment="table-departments">
-    <table class="table table-bordered">
-        <thead class="thead-light">
-        <tr>
-            <th><a class="sorted" sd:pagination-sort="id">ID</a></th>
-            <th><a class="sorted" sd:pagination-sort="name">Название</a></th>
-            <th>Пароль</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="department: ${departments}">
-            <td th:text="${department.getId()}"/>
-            <td th:text="${department.getName()}"/>
-            <td th:text="${department.getPassword()}"/>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div th:fragment="table-employees">
-    <table class="table table-bordered">
-        <thead class="thead-light">
-        <tr>
-            <th><a class="sorted" sd:pagination-sort="id">ID</a></th>
-            <th><a class="sorted" sd:pagination-sort="fullName">Фамилия Имя</a></th>
-            <th><a class="sorted" sd:pagination-sort="tgFirstName">Telegram имя</a></th>
-            <th><a class="sorted" sd:pagination-sort="department">Отдел</a></th>
-            <th><a class="sorted" sd:pagination-sort="role">Роль</a></th>
-            <th><a class="sorted" sd:pagination-sort="createdAt">Дата создания</a></th>
-            <th><a class="sorted" sd:pagination-sort="updatedAt">Дата обновления</a></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="employee: ${employees}">
-            <td th:text="${employee.getId()}"/>
-            <td th:text="${employee.getFullName()}"/>
-            <td th:text="${employee.getTgFirstName()}"/>
-            <td th:text="${employee.getDepartment().getName()}"/>
-            <td th:text="${employee.getRole()}"/>
-            <td th:text="${#dates.format(employee.getCreatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
-            <td th:text="${#dates.format(employee.getUpdatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
-        </tr>
-        </tbody>
-    </table>
 </div>
 
 <div th:fragment="pagination" class="row">
