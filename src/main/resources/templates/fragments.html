@@ -82,13 +82,13 @@
         <thead class="thead-light">
         <tr>
             <th><a class="sorted" sd:pagination-sort="id">ID</a></th>
-            <th scope="col">Кому</th>
-            <th scope="col">Отправил</th>
-            <th scope="col">Текст</th>
-            <th scope="col">Исполнитель</th>
-            <th scope="col">Дата создания</th>
-            <th scope="col">Дата обновления</th>
-            <th scope="col">Файл</th>
+            <th><a class="sorted" sd:pagination-sort="toDepartment">Кому</a></th>
+            <th><a class="sorted" sd:pagination-sort="fromEmployee">Отправил</a></th>
+            <th><a class="sorted" sd:pagination-sort="textMsg">Текст</a></th>
+            <th><a class="sorted" sd:pagination-sort="taskExecutor">Исполнитель</a></th>
+            <th><a class="sorted" sd:pagination-sort="createdAt">Дата создания</a></th>
+            <th><a class="sorted" sd:pagination-sort="updatedAt">Дата обновления</a></th>
+            <th><a class="sorted" sd:pagination-sort="fileId">Файл</a></th>
         </tr>
         </thead>
         <tbody>
@@ -111,8 +111,8 @@
         <thead class="thead-light">
         <tr>
             <th><a class="sorted" sd:pagination-sort="id">ID</a></th>
-            <th scope="col">Название</th>
-            <th scope="col">Пароль</th>
+            <th><a class="sorted" sd:pagination-sort="name">Название</a></th>
+            <th>Пароль</th>
         </tr>
         </thead>
         <tbody>
@@ -130,12 +130,12 @@
         <thead class="thead-light">
         <tr>
             <th><a class="sorted" sd:pagination-sort="id">ID</a></th>
-            <th scope="col">Фамилия Имя</th>
-            <th scope="col">Telegram имя</th>
-            <th scope="col">Отдел</th>
-            <th scope="col">Роль</th>
-            <th scope="col">Дата создания</th>
-            <th scope="col">Дата обновления</th>
+            <th><a class="sorted" sd:pagination-sort="fullName">Фамилия Имя</a></th>
+            <th><a class="sorted" sd:pagination-sort="tgFirstName">Telegram имя</a></th>
+            <th><a class="sorted" sd:pagination-sort="department">Отдел</a></th>
+            <th><a class="sorted" sd:pagination-sort="role">Роль</a></th>
+            <th><a class="sorted" sd:pagination-sort="createdAt">Дата создания</a></th>
+            <th><a class="sorted" sd:pagination-sort="updatedAt">Дата обновления</a></th>
         </tr>
         </thead>
         <tbody>

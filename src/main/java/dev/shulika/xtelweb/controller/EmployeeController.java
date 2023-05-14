@@ -20,7 +20,7 @@ public class EmployeeController {
     @GetMapping("/employees")
     public String findAllEmployees(
             Model model,
-            @PageableDefault(size = 15) @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(size = 15) @SortDefault(sort = "fullName", direction = Sort.Direction.ASC) Pageable pageable
     ) {
         log.info("+++++ IN EmployeeController :: findAllEmployees :: START +++++");
         var employees = employeeService.findAllPage(pageable);
