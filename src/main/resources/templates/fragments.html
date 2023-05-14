@@ -26,10 +26,10 @@
                     <a class="nav-link" href="/posts">Сообщения</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/posts">Отделы</a>
+                    <a class="nav-link" href="/departments">Отделы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/posts">Сотрудники</a>
+                    <a class="nav-link" href="/employees">Сотрудники</a>
                 </li>
                 <!--                <li class="nav-item dropdown">-->
                 <!--                    <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Отделы</a>-->
@@ -52,7 +52,7 @@
 </div>
 
 <div th:fragment="dapartmentPosts" class="dropdown">
-    <ul class="navbar nav ml-auto" >
+    <ul class="navbar nav ml-auto">
         <li>
             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -69,14 +69,15 @@
         </li>
         <li>
             <form class="form-inline" th:action="@{/posts/search}" method="post">
-                <input class="form-control mr-sm-2" name="keyword" th:value="${keyword}" type="search" placeholder="поиск по тексту" aria-label="Search">
+                <input class="form-control mr-sm-2" name="keyword" th:value="${keyword}" type="search"
+                       placeholder="поиск по тексту" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
             </form>
         </li>
     </ul>
 </div>
 
-<div th:fragment="table">
+<div th:fragment="table-posts">
     <table class="table table-bordered">
         <thead class="thead-light">
         <tr>
@@ -100,6 +101,52 @@
             <td th:text="${#dates.format(post.getCreatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
             <td th:text="${#dates.format(post.getUpdatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
             <td th:text="${post.getFileId()!=null} ? '+' : '-'"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:fragment="table-departments">
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th><a class="sorted" sd:pagination-sort="id">ID</a></th>
+            <th scope="col">Название</th>
+            <th scope="col">Пароль</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="department: ${departments}">
+            <td th:text="${department.getId()}"/>
+            <td th:text="${department.getName()}"/>
+            <td th:text="${department.getPassword()}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:fragment="table-employees">
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th><a class="sorted" sd:pagination-sort="id">ID</a></th>
+            <th scope="col">Фамилия Имя</th>
+            <th scope="col">Telegram имя</th>
+            <th scope="col">Отдел</th>
+            <th scope="col">Роль</th>
+            <th scope="col">Дата создания</th>
+            <th scope="col">Дата обновления</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee: ${employees}">
+            <td th:text="${employee.getId()}"/>
+            <td th:text="${employee.getFullName()}"/>
+            <td th:text="${employee.getTgFirstName()}"/>
+            <td th:text="${employee.getDepartment().getName()}"/>
+            <td th:text="${employee.getRole()}"/>
+            <td th:text="${#dates.format(employee.getCreatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
+            <td th:text="${#dates.format(employee.getUpdatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
         </tr>
         </tbody>
     </table>
