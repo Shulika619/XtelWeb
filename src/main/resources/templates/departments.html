@@ -19,7 +19,13 @@
         <tr th:each="department: ${departments}">
             <td th:text="${department.getId()}"/>
             <td th:text="${department.getName()}"/>
-            <td th:text="${department.getPassword()}"/>
+            <!--            <td th:text="${department.getPassword()}"/>-->
+            <td>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" th:data-target="${'#hidePass'+department.getId()}"
+                        aria-expanded="false">Показать/скрыть
+                </button>
+                <span class="collapse" th:id="${'hidePass'+department.getId()}" th:text="${department.getPassword()}"/>
+            </td>
         </tr>
         </tbody>
     </table>
