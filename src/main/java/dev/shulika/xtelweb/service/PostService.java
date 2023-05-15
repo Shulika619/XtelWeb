@@ -36,4 +36,11 @@ public class PostService {
         log.info("+++++ IN PostService :: findBySearchTxt :: FINISHED SUCCESSFULLY +++++");
         return posts;
     }
+
+    public Long countPostsToday(){
+        log.info("+++++ IN PostService :: countPostsToday :: START +++++");
+        var count = postRepository.findCountPostsToday();
+        log.info("+++++ IN PostService :: countPostsToday :: FINISHED SUCCESSFULLY +++++");
+        return count;
+    }
 }

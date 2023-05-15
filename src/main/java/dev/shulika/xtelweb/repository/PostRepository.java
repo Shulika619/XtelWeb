@@ -20,4 +20,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             countQuery = "SELECT count(p) from Post p")
     Page<Post> findBySearchText(Pageable pageable, String searchTxt);
 
+    @Query("SELECT COUNT(p) FROM Post p WHERE p.createdAt>=CURRENT_DATE")
+    long findCountPostsToday();
+
 }

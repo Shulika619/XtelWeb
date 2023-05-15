@@ -30,4 +30,11 @@ public class DepartmentService {
         log.info("+++++ IN DepartmentService :: findAllPage :: FINISHED SUCCESSFULLY +++++");
         return departments;
     }
+
+    public Long countDepartments(){
+        log.info("+++++ IN DepartmentService :: countDepartments :: START +++++");
+        var count = departmentRepository.findTotalDepartmentsCount();
+        log.info("+++++ IN DepartmentService :: countDepartments :: FINISHED SUCCESSFULLY +++++");
+        return count;
+    }
 }

@@ -5,6 +5,7 @@
     <title th:text="${title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}"/>
     <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -12,7 +13,7 @@
 <body>
 
 <div th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10"
                 aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
