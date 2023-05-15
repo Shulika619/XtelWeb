@@ -21,10 +21,13 @@
             <td th:text="${department.getName()}"/>
             <!--            <td th:text="${department.getPassword()}"/>-->
             <td>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" th:data-target="${'#hidePass'+department.getId()}"
+                <button class="btn btn-primary" type="button" data-toggle="collapse"
+                        th:data-target="${'#hidePass'+department.getId()}"
                         aria-expanded="false">Показать/скрыть
                 </button>
-                <span class="collapse" th:id="${'hidePass'+department.getId()}" th:text="${department.getPassword()}"/>
+                <div class="collapse card-body" th:id="${'hidePass'+department.getId()}"
+                     th:text="${department.getPassword()}">
+                </div>
             </td>
         </tr>
         </tbody>
