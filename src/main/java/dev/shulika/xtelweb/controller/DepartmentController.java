@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.webjars.NotFoundException;
 
 @Controller
 @RequiredArgsConstructor
@@ -42,14 +43,14 @@ public class DepartmentController {
         model.addAttribute("h1", "Добавить отдел");
         model.addAttribute("department", new Department());
         log.info("+++++ IN DepartmentController :: newDepartment :: COMPLETE +++++");
-        return "department-new";
+        return "department-form";
     }
 
     @PostMapping("/departments/save")
-    public String saveDepartment(Department department,  RedirectAttributes redirectAttr) {
+    public String saveDepartment(Department department, RedirectAttributes redirectAttr) {
         log.info("+++++ IN DepartmentController :: saveDepartment :: START +++++");
         departmentService.saveDepartment(department);
-        redirectAttr.addFlashAttribute("message", "Отдел успешно сохранен!");
+        redirectAttr.addFlashAttribute("messageOk", "Отдел успешно сохранен!");
         log.info("+++++ IN DepartmentController :: saveDepartment :: COMPLETE +++++");
         return "redirect:/departments";
     }
@@ -57,14 +58,21 @@ public class DepartmentController {
     @GetMapping("/departments/{id}/edit")
     public String editDepartment(
             Model model,
-            @PathVariable("id") Long id
-            ) {
+            @PathVariable("id") Long id,
+            RedirectAttributes redirectAttr
+    ) {
         log.info("+++++ IN DepartmentController :: editDepartment :: START +++++");
-        model.addAttribute("title", "Редактировать отдел :: X-Tel");
-        model.addAttribute("h1", "Редактировать отдел");
-
-
-        log.info("+++++ IN DepartmentController :: editDepartment :: COMPLETE +++++");
-        return "department-edit";
+        try {
+            var department = departmentService.findById(id);
+            model.addAttribute("title", "Редактировать отдел :: X-Tel");
+            model.addAttribute("h1", "Редактировать отдел");
+            model.addAttribute("department", department);
+            log.info("+++++ IN DepartmentController :: editDepartment :: COMPLETE +++++");
+            return "department-form";
+        } catch (NotFoundException e) {
+            redirectAttr.addFlashAttribute("messageFail", e.getMessage());
+            log.error("---- IN DepartmentController :: saveDepartment :: FAIL ----");
+            return "redirect:/departments";
+        }
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.webjars.NotFoundException;
 
 import java.util.List;
 
@@ -31,6 +32,17 @@ public class DepartmentService {
         return departments;
     }
 
+    public Department findById(Long id) {
+        log.info("+++++ IN DepartmentService :: findById :: START +++++");
+        var result = departmentRepository.findById(id);
+        if (result.isPresent()){
+        log.info("+++++ IN DepartmentService :: findById :: FINISHED SUCCESSFULLY +++++");
+            return result.get();
+        }
+        log.error("+++++ IN DepartmentService :: findById :: FAIL -----");
+        throw new NotFoundException("Отдел не найден! ID: " + id);
+    }
+
     public Long countDepartments(){
         log.info("+++++ IN DepartmentService :: countDepartments :: START +++++");
         var count = departmentRepository.findTotalDepartmentsCount();
@@ -39,10 +51,9 @@ public class DepartmentService {
     }
 
     @Transactional(readOnly = false)
-    public Department saveDepartment(Department department){
+    public void saveDepartment(Department department){
         log.info("+++++ IN DepartmentService :: saveDepartment :: START +++++");
-        var returnedDepartment = departmentRepository.save(department);
+        departmentRepository.save(department);
         log.info("+++++ IN DepartmentService :: saveDepartment :: FINISHED SUCCESSFULLY +++++");
-        return returnedDepartment;
     }
 }
