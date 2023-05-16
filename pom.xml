@@ -15,6 +15,8 @@
     <description>XtelWeb</description>
     <properties>
         <java.version>17</java.version>
+        <preliquibase.version>1.2.2</preliquibase.version>
+        <liquibase.version>4.22.0</liquibase.version>
         <lombok.version>1.18.24</lombok.version>
         <bootstrap.version>4.3.1</bootstrap.version>
         <thymeleaf.spring.dialect.version>3.5.0</thymeleaf.spring.dialect.version>
@@ -33,6 +35,17 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.lbruun.springboot</groupId>
+            <artifactId>preliquibase-spring-boot-starter</artifactId>
+            <version>${preliquibase.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
         </dependency>
 
         <dependency>
@@ -64,7 +77,6 @@
             <artifactId>font-awesome</artifactId>
             <version>${font-awesome.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.projectlombok</groupId>
