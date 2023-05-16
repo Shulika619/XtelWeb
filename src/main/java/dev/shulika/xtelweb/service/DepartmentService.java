@@ -37,4 +37,12 @@ public class DepartmentService {
         log.info("+++++ IN DepartmentService :: countDepartments :: FINISHED SUCCESSFULLY +++++");
         return count;
     }
+
+    @Transactional(readOnly = false)
+    public Department saveDepartment(Department department){
+        log.info("+++++ IN DepartmentService :: saveDepartment :: START +++++");
+        var returnedDepartment = departmentRepository.save(department);
+        log.info("+++++ IN DepartmentService :: saveDepartment :: FINISHED SUCCESSFULLY +++++");
+        return returnedDepartment;
+    }
 }

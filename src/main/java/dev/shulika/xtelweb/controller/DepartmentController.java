@@ -1,5 +1,6 @@
 package dev.shulika.xtelweb.controller;
 
+import dev.shulika.xtelweb.model.Department;
 import dev.shulika.xtelweb.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,15 +35,23 @@ public class DepartmentController {
         return "departments";
     }
 
-    @GetMapping("/departments/add")
-    public String addDepartment(Model model) {
-        log.info("+++++ IN DepartmentController :: addDepartment :: START +++++");
+    @GetMapping("/departments/new")
+    public String newDepartment(Model model) {
+        log.info("+++++ IN DepartmentController :: newDepartment :: START +++++");
         model.addAttribute("title", "Добавить отдел :: X-Tel");
         model.addAttribute("h1", "Добавить отдел");
+        model.addAttribute("department", new Department());
+        log.info("+++++ IN DepartmentController :: newDepartment :: COMPLETE +++++");
+        return "department-new";
+    }
 
-
-        log.info("+++++ IN DepartmentController :: addDepartment :: COMPLETE +++++");
-        return "department-add";
+    @PostMapping("/departments/save")
+    public String saveDepartment(Department department,  RedirectAttributes redirectAttr) {
+        log.info("+++++ IN DepartmentController :: saveDepartment :: START +++++");
+        departmentService.saveDepartment(department);
+        redirectAttr.addFlashAttribute("message", "Отдел успешно сохранен!");
+        log.info("+++++ IN DepartmentController :: saveDepartment :: COMPLETE +++++");
+        return "redirect:/departments";
     }
 
     @GetMapping("/departments/{id}/edit")
