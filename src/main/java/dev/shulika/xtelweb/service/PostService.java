@@ -18,15 +18,29 @@ public class PostService {
 
     public Page<Post> findAll(Pageable pageable){
         log.info("+++++ IN PostService :: findAll :: START +++++");
-        var posts = postRepository.findAllWithoutNPlusOne(pageable);
+        var posts = postRepository.findAllPosts(pageable);
         log.info("+++++ IN PostService :: findAll :: FINISHED SUCCESSFULLY +++++");
         return posts;
     }
 
     public Page<Post> findByDepartment(Pageable pageable, Long departmentId){
         log.info("+++++ IN PostService :: findByDepartment :: START +++++");
-        var posts = postRepository.findByDepartmentWithoutNPlusOne(pageable, departmentId);
+        var posts = postRepository.findByDepartmentId(pageable, departmentId);
         log.info("+++++ IN PostService :: findByDepartment :: FINISHED SUCCESSFULLY +++++");
         return posts;
+    }
+
+    public Page<Post> findBySearchTxt(Pageable pageable, String searchTxt){
+        log.info("+++++ IN PostService :: findBySearchTxt :: START +++++");
+        var posts = postRepository.findBySearchText(pageable, searchTxt);
+        log.info("+++++ IN PostService :: findBySearchTxt :: FINISHED SUCCESSFULLY +++++");
+        return posts;
+    }
+
+    public Long countPostsToday(){
+        log.info("+++++ IN PostService :: countPostsToday :: START +++++");
+        var count = postRepository.findCountPostsToday();
+        log.info("+++++ IN PostService :: countPostsToday :: FINISHED SUCCESSFULLY +++++");
+        return count;
     }
 }

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}"/>
     <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -11,8 +13,9 @@
 <body>
 
 <div th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10"
+                aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -25,71 +28,18 @@
                     <a class="nav-link" href="/posts">Сообщения</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/posts">Отделы</a>
+                    <a class="nav-link" href="/departments">Отделы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/posts">Сотрудники</a>
+                    <a class="nav-link" href="/employees">Сотрудники</a>
                 </li>
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Отделы</a>-->
-<!--                    <div class="dropdown-menu" aria-labelledby="dropdown10">-->
-<!--                        <th:block th:each="department: ${departments}">-->
-<!--                            <a th:text="${department.getName()}" class="dropdown-item" href="#">Action</a>-->
-<!--                        </th:block>-->
-<!--                    </div>-->
-<!--                </li>-->
             </ul>
-            <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="поиск" aria-label="Search">
-            </form>
         </div>
     </nav>
 </div>
 
 <div th:fragment="h1" class="container-fluid text-center">
-    <h1 th:text="${h1}"/>
-</div>
-
-<div th:fragment="dapartmentPosts" class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Выбрать отдел
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a th:text="Все" class="dropdown-item" href="/posts">Все</a>
-        <div class="dropdown-divider"></div>
-        <th:block th:each="department: ${departments}">
-            <a th:text="${department.getName()}" class="dropdown-item" th:href="@{/posts/{id}(id=${department.getId()})}"></a>
-        </th:block>
-    </div>
-</div>
-
-<div th:fragment="table">
-    <table class="table table-bordered">
-        <thead class="thead-light">
-        <tr>
-            <th><a class="sorted" sd:pagination-sort="id" >ID</a></th>
-            <th scope="col">Кому</th>
-            <th scope="col">Отправил</th>
-            <th scope="col">Текст</th>
-            <th scope="col">Исполнитель</th>
-            <th scope="col">Дата создания</th>
-            <th scope="col">Дата обновления</th>
-            <th scope="col">Файл</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="post: ${posts}">
-            <td th:text="${post.getId()}"/>
-            <td th:text="${post.getToDepartment().getName()}"/>
-            <td th:text="${post.getFromEmployee().getFullName()}"/>
-            <td th:text="${post.getTextMsg()}"/>
-            <td th:text="${post?.getTaskExecutor()?.getFullName()} ?: '-'"/>
-            <td th:text="${#dates.format(post.getCreatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
-            <td th:text="${#dates.format(post.getUpdatedAt(), 'dd-MMM-yyyy HH:mm')}"></td>
-            <td th:text="${post.getFileId()!=null} ? '+' : '-'"/>
-        </tr>
-        </tbody>
-    </table>
+        <h1 th:text="${h1}" class="mt-3 mb-3"/>
 </div>
 
 <div th:fragment="pagination" class="row">
