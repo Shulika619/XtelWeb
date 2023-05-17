@@ -62,6 +62,12 @@
 }
 
 /*For main notes -----------------------*/
+.description-truncate {
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
 .card-big-shadow {
     /*max-width: 320px;*/
