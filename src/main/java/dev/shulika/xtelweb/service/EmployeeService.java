@@ -23,7 +23,7 @@ public class EmployeeService {
         return employees;
     }
 
-    public Long countEmployees(){
+    public Long countEmployees() {
         log.info("+++++ IN EmployeeService :: countEmployees :: START +++++");
         var count = employeeRepository.findTotalEmployeesCount();
         log.info("+++++ IN EmployeeService :: countEmployees :: FINISHED SUCCESSFULLY +++++");

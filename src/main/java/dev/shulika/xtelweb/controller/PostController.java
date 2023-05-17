@@ -64,7 +64,7 @@ public class PostController {
             @PageableDefault(size = 15) @SortDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
         log.info("+++++ IN PostController :: searchPost :: START +++++");
-        if (keyword.isBlank()){
+        if (keyword.isBlank()) {
             log.info("----- IN PostController :: searchPost :: keyword NULL -----");
             return "redirect:/posts";
         }

@@ -25,6 +25,7 @@ public class DepartmentService {
         log.info("+++++ IN DepartmentService :: findAll :: FINISHED SUCCESSFULLY +++++");
         return departments;
     }
+
     public Page<Department> findAllPage(Pageable pageable) {
         log.info("+++++ IN DepartmentService :: findAllPage :: START +++++");
         var departments = departmentRepository.findAll(pageable);
@@ -35,15 +36,15 @@ public class DepartmentService {
     public Department findById(Long id) {
         log.info("+++++ IN DepartmentService :: findById :: START +++++");
         var result = departmentRepository.findById(id);
-        if (result.isPresent()){
-        log.info("+++++ IN DepartmentService :: findById :: FINISHED SUCCESSFULLY +++++");
+        if (result.isPresent()) {
+            log.info("+++++ IN DepartmentService :: findById :: FINISHED SUCCESSFULLY +++++");
             return result.get();
         }
         log.error("+++++ IN DepartmentService :: findById :: FAIL -----");
         throw new NotFoundException("Отдел не найден! ID: " + id);
     }
 
-    public Long countDepartments(){
+    public Long countDepartments() {
         log.info("+++++ IN DepartmentService :: countDepartments :: START +++++");
         var count = departmentRepository.findTotalDepartmentsCount();
         log.info("+++++ IN DepartmentService :: countDepartments :: FINISHED SUCCESSFULLY +++++");
@@ -51,7 +52,7 @@ public class DepartmentService {
     }
 
     @Transactional(readOnly = false)
-    public void saveDepartment(Department department){
+    public void saveDepartment(Department department) {
         log.info("+++++ IN DepartmentService :: saveDepartment :: START +++++");
         departmentRepository.save(department);
         log.info("+++++ IN DepartmentService :: saveDepartment :: FINISHED SUCCESSFULLY +++++");

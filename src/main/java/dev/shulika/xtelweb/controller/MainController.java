@@ -27,14 +27,14 @@ public class MainController {
         var countPostsToday = postService.countPostsToday();
         var countEmployees = employeeService.countEmployees();
         var countDepartments = departmentService.countDepartments();
-        var last10Posts = postService.findLastPostsToday(PageRequest.of(0, 9));
+        var lastPosts = postService.findLastPostsToday(PageRequest.of(0, 9));
         model.addAttribute("title", "Главная :: X-Tel");
         model.addAttribute("h1", "Главная");
         model.addAttribute("dateToday", Timestamp.from(Instant.now()));
         model.addAttribute("countPostsToday", countPostsToday);
         model.addAttribute("countEmployee", countEmployees);
         model.addAttribute("countDepartments", countDepartments);
-        model.addAttribute("lastPosts", last10Posts);
+        model.addAttribute("lastPosts", lastPosts);
         log.info("+++++ IN MainController :: mainPage :: COMPLETE +++++");
         return "index";
     }
