@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -42,5 +44,12 @@ public class PostService {
         var count = postRepository.findCountPostsToday();
         log.info("+++++ IN PostService :: countPostsToday :: FINISHED SUCCESSFULLY +++++");
         return count;
+    }
+
+    public List<Post> findLastPostsToday(Pageable pageable){
+        log.info("+++++ IN PostService :: findLastPostsToday :: START +++++");
+        var last10PostsToday = postRepository.findLastPostsToday(pageable);
+        log.info("+++++ IN PostService :: findLastPostsToday :: FINISHED SUCCESSFULLY +++++");
+        return last10PostsToday;
     }
 }

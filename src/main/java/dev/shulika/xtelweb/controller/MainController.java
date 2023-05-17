@@ -5,6 +5,7 @@ import dev.shulika.xtelweb.service.EmployeeService;
 import dev.shulika.xtelweb.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,12 +27,14 @@ public class MainController {
         var countPostsToday = postService.countPostsToday();
         var countEmployees = employeeService.countEmployees();
         var countDepartments = departmentService.countDepartments();
+        var last10Posts = postService.findLastPostsToday(PageRequest.of(0, 9));
         model.addAttribute("title", "Главная :: X-Tel");
         model.addAttribute("h1", "Главная");
         model.addAttribute("dateToday", Timestamp.from(Instant.now()));
         model.addAttribute("countPostsToday", countPostsToday);
         model.addAttribute("countEmployee", countEmployees);
         model.addAttribute("countDepartments", countDepartments);
+        model.addAttribute("lastPosts", last10Posts);
         log.info("+++++ IN MainController :: mainPage :: COMPLETE +++++");
         return "index";
     }
