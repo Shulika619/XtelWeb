@@ -60,6 +60,6 @@ create table web_user
     role     varchar(20)         not null,
     is_enabled bool
 );
-INSERT INTO web_user(username, password, role, is_enabled) values ('admin', '1234', 'ADMIN', true);
+INSERT INTO web_user(username, password, role, is_enabled) values ('admin', '$2y$10$W9MEGDZ9b0XF2vU6tfqpjumzX587NVx2fdeUkJnmILsJMvdSjSxA6', 'ADMIN', true);
 --rollback DROP TABLE category;
 
