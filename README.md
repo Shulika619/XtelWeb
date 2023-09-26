@@ -6,6 +6,7 @@ Web application for the company administrator. Helps to manage Telegram Bot - [X
 - Display a list of registered employees
 - Display a list of all messages/tasks and detailed information
 - It is possible to search and sort by fields and departments
+- Displays general information on the main page
 
 ## Technologies were used in the development:
 - Java 17
