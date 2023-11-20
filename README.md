@@ -8,7 +8,7 @@ Web application for the company administrator. Helps to manage Telegram Bot - [X
 - It is possible to search and sort by fields and departments
 - Displays general information on the main page
 
-## Technologies were used in the development:
+## Technologies
 - Java 17
 - Spring Boot
 - Spring Web
